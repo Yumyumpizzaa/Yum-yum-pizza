@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم بيتزا يم يم - Yum Yum Pizza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+        }
+        body {
+            background-color: #1a1a1a;
+            color: #fff;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #8b0000, #330000);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid #ffcc00;
+        }
+        .logo-container {
+            margin-bottom: 15px;
+        }
+        .logo-container img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #ffcc00;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        header h1 {
+            font-size: 1.8rem;
+            color: #ffcc00;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        header p {
+            font-size: 1.1rem;
+            color: #f1f1f1;
+        }
+        .contact-bar {
+            background: #222;
+            padding: 15px;
+            text-align: center;
+            border-bottom: 2px solid #444;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .btn-action {
+            background-color: #27ae60;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+        }
+        .btn-action.whatsapp {
+            background-color: #25d366;
+        }
+        .btn-action:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            color: #ffcc00;
+            margin: 40px 0 20px;
+            border-bottom: 2px solid #8b0000;
+            padding-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title img {
+            max-width: 250px;
+            height: auto;
+            object-fit: contain;
+            border-radius: 0;
+            border: none;
+            box-shadow: none;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .menu-category {
+            background: #2a2a2a;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border-top: 4px solid #8b0000;
+        }
+        .menu-category h3 {
+            color: #ffcc00;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+            text-align: center;
+            border-bottom: 1px dashed #444;
+            padding-bottom: 8px;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #383838;
+            gap: 10px;
+        }
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        .item-info {
+            flex: 1;
+        }
+        .item-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .item-desc {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-top: 3px;
+        }
+        .item-prices-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+        .price-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.8rem;
+        }
+        .price-type {
+            font-weight: bold;
+            color: #ffcc00;
+            font-size: 0.75rem;
+            margin-left: 4px;
+        }
+        .price-type.stuffed {
+            color: #ff5555;
+        }
+        .price-tag {
+            background: #333;
+            padding: 2px 6px;
+            border-radius: 4px;
+            border: 1px solid #444;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        .price-tag.stuffed {
+            border-color: #8b0000;
+            color: #ff9999;
+            background: #2b1a1a;
+        }
+        footer {
+            background: #111;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 3px solid #8b0000;
+            color: #888;
+        }
+        @media(max-width: 600px) {
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            .menu-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+            .item-prices-container {
+                align-items: flex-start;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="https://i.ibb.co/NdbzPH2D/FB-IMG-1790419252122.jpg" alt="لوجو بيتزا يم يم">
+        </div>
+        <h1>بيتزا يم يم - Yum Yum</h1>
+        <p>فرع المهندسين: 15 طيبة - الدقي، المهندسين</p>
+    </header>
+
+    <div class="contact-bar">
+        <a href="tel:01271111895" class="btn-action"><i class="fas fa-phone-alt"></i> اطلب الآن (مكالمة)</a>
+        <a href="https://wa.me/201271111895" target="_blank" class="btn-action whatsapp"><i class="fab fa-whatsapp"></i> اطلب عبر واتساب</a>
+    </div>
+
+    <div class="container">
+
+        <!-- بيتزا -->
+        <div class="section-title">
+            <img src="https://i.ibb.co/rfXQhN2z/file-00000000a610820abc24d15720c64280.png" alt="بيتزا">
+            <span>بيتزا (بان أو كلاسيك / استافد كراست)</span>
+        </div>
+        <div class="menu-grid">
+            
+            <div class="menu-category">
+                <h3>بيتزا اللحوم والجبن</h3>
+                
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا مارجريتا</div>
+                        <div class="item-desc">جبنة موتزاريلا - صوص بيتزا</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 100</span><span class="price-tag">M: 145</span><span class="price-tag">L: 185</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 195</span><span class="price-tag stuffed">L: 235</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا مكس جبن</div>
+                        <div class="item-desc">موتزاريلا - رومي - شيدر - كيري</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 120</span><span class="price-tag">M: 180</span><span class="price-tag">L: 250</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 230</span><span class="price-tag stuffed">L: 300</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا خضار</div>
+                        <div class="item-desc">موتزاريلا - خضار - طماطم - زيتون</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 110</span><span class="price-tag">M: 155</span><span class="price-tag">L: 205</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 205</span><span class="price-tag stuffed">L: 255</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا سوبر سوبريم</div>
+                        <div class="item-desc">بيبروني - لحم - مشروم - خضار</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 135</span><span class="price-tag">M: 190</span><span class="price-tag">L: 265</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 240</span><span class="price-tag stuffed">L: 315</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا حارة</div>
+                        <div class="item-desc">بيبروني - فلفل حار - لحم مفروم</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 130</span><span class="price-tag">M: 180</span><span class="price-tag">L: 255</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 230</span><span class="price-tag stuffed">L: 305</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا هوت دوج</div>
+                        <div class="item-desc">موتزاريلا - هوت دوج - بصل - زيتون</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 130</span><span class="price-tag">M: 180</span><span class="price-tag">L: 255</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 230</span><span class="price-tag stuffed">L: 305</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا كرات اللحم</div>
+                        <div class="item-desc">موتزاريلا - كرات اللحم - بصل</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 130</span><span class="price-tag">M: 180</span><span class="price-tag">L: 255</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 230</span><span class="price-tag stuffed">L: 305</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا بسطرمة</div>
+                        <div class="item-desc">موتزاريلا - بسطرمة - فلفل - زيتون</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 135</span><span class="price-tag">M: 190</span><span class="price-tag">L: 265</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 240</span><span class="price-tag stuffed">L: 315</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا سلامي</div>
+                        <div class="item-desc">موتزاريلا - سلامي</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 135</span><span class="price-tag">M: 190</span><span class="price-tag">L: 265</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 240</span><span class="price-tag stuffed">L: 315</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا مكس لحوم</div>
+                        <div class="item-desc">سوسيس - هوت دوج - تركي - بسطرمة - سلامي</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 135</span><span class="price-tag">M: 200</span><span class="price-tag">L: 275</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 250</span><span class="price-tag stuffed">L: 325</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا سجق</div>
+                        <div class="item-desc">موتزاريلا - سجق - طماطم - بصل - فلفل</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 130</span><span class="price-tag">M: 180</span><span class="price-tag">L: 250</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 230</span><span class="price-tag stuffed">L: 305</span></div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="menu-category">
+                <h3>بيتزا الدجاج والسي فود</h3>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا شيش طاووق</div>
+                        <div class="item-desc">قطع شيش طاووق - فلفل - زيتون</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 135</span><span class="price-tag">M: 190</span><span class="price-tag">L: 265</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 240</span><span class="price-tag stuffed">L: 315</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا دجاج سوبريم</div>
+                        <div class="item-desc">قطع دجاج - مشروم - فلفل أخضر</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 135</span><span class="price-tag">M: 190</span><span class="price-tag">L: 265</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 240</span><span class="price-tag stuffed">L: 315</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا دجاج كريسبي</div>
+                        <div class="item-desc">قطع دجاج كريسبي - فلفل أخضر - زيتون</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 135</span><span class="price-tag">M: 190</span><span class="price-tag">L: 265</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 240</span><span class="price-tag stuffed">L: 315</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا دجاج رانش</div>
+                        <div class="item-desc">دجاج كريسبي - صوص رانش</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 135</span><span class="price-tag">M: 190</span><span class="price-tag">L: 265</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 240</span><span class="price-tag stuffed">L: 315</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا دجاج باربيكيو</div>
+                        <div class="item-desc">دجاج جريلد - صوص باربيكيو</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 135</span><span class="price-tag">M: 190</span><span class="price-tag">L: 265</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 240</span><span class="price-tag stuffed">L: 315</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا تركي مدخن</div>
+                        <div class="item-desc">موتزاريلا - تركي مدخن - مشروم</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 135</span><span class="price-tag">M: 190</span><span class="price-tag">L: 265</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 240</span><span class="price-tag stuffed">L: 315</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا جمبري</div>
+                        <div class="item-desc">موتزاريلا - جمبري - فلفل - زيتون</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">M: 230</span><span class="price-tag">L: 300</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 280</span><span class="price-tag stuffed">L: 350</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا سي فود</div>
+                        <div class="item-desc">جمبري - كاليماري - أصابع كابوريا</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">M: 255</span><span class="price-tag">L: 315</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 305</span><span class="price-tag stuffed">L: 365</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا سي رانش</div>
+                        <div class="item-desc">سي فود - صوص رانش</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">M: 275</span><span class="price-tag">L: 335</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 325</span><span class="price-tag stuffed">L: 385</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-info">
+                        <div class="item-name">بيتزا تونة</div>
+                        <div class="item-desc">تونة - فلفل - زيتون - بصل</div>
+                    </div>
+                    <div class="item-prices-container">
+                        <div class="price-row"><span class="price-type">كلاسيك:</span><span class="price-tag">S: 135</span><span class="price-tag">M: 190</span><span class="price-tag">L: 265</span></div>
+                        <div class="price-row"><span class="price-type stuffed">ستافد:</span><span class="price-tag stuffed">M: 240</span><span class="price-tag stuffed">L: 315</span></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- بيتزا فور سيزون -->
+        <div class="section-title">
+            <img src="https://i.ibb.co/GfqTJXnS/file-000000008478820a942916311c4f99d0.png" alt="فور سيزون">
+            <span>بيتزا فور سيزون (Four Season Pizza)</span>
+        </div>
+        <div class="menu-category" style="max-width: 650px; margin: 0 auto;">
+            <p style="text-align: center; color: #aaa; margin-bottom: 12px;">تختار 4 أصناف بيتزا من اختيارك (ما عدا الجمبري والسي فود)</p>
+            
+            <div class="menu-item">
+                <div class="item-info">
+                    <div class="item-name">بيتزا فور سيزون - كلاسيك (C)</div>
+                </div>
+                <div class="item-prices-container">
+                    <div class="price-row"><span class="price-tag">M (وسط): 215 ج</span><span class="price-tag">L (كبير): 285 ج</span></div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <div class="item-info">
+                    <div class="item-name">بيتزا فور سيزون - ستافد كراست (S)</div>
+                </div>
+                <div class="item-prices-container">
+                    <div class="price-row"><span class="price-tag stuffed">M (وسط): 265 ج</span><span class="price-tag stuffed">L (كبير): 335 ج</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ميكس يم يم (حلويات) -->
+        <div class="section-title">
+            <img src="https://i.ibb.co/fYj3x3Zs/file-00000000512882108868348ea231a566.png" alt="ميكس يم يم">
+            <span>ميكس يم يم (حلويات)</span>
+        </div>
+        <div class="menu-category" style="max-width: 600px; margin: 0 auto;">
+            <div class="menu-item"><span class="item-name">شيكولاتة</span><span class="price-tag">170 ج</span></div>
+            <div class="menu-item"><span class="item-name">لوتس</span><span class="price-tag">170 ج</span></div>
+            <div class="menu-item"><span class="item-name">اوريو</span><span class="price-tag">170 ج</span></div>
+        </div>
+
+        <!-- مشروبات ومياه -->
+        <div class="section-title">
+            <img src="https://i.ibb.co/35FzDKXy/file-00000000702c820aa98e5b543ac20338.png" alt="مشروبات">
+            <span>مشروبات ومياه</span>
+        </div>
+        <div class="menu-category" style="max-width: 600px; margin: 0 auto;">
+            <div class="menu-item"><span class="item-name">مية معدنية</span><span class="price-tag">10 ج</span></div>
+            <div class="menu-item"><span class="item-name">بييبسي</span><span class="price-tag">25 ج</span></div>
+        </div>
+
+        <!-- رول يم يم -->
+        <div class="section-title">
+            <img src="https://i.ibb.co/vp4Z6M6/file-000000003d3881f4992be201895cc423.png" alt="رول يم يم">
+            <span>رول يم يم (Roll YumYum)</span>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-category">
+                <div class="menu-item"><span class="item-name">كرانشي</span><span class="price-tag">145 ج</span></div>
+                <div class="menu-item"><span class="item-name">سجق</span><span class="price-tag">135 ج</span></div>
+                <div class="menu-item"><span class="item-name">مكس جبنة</span><span class="price-tag">145 ج</span></div>
+                <div class="menu-item"><span class="item-name">هوت دوج</span><span class="price-tag">135 ج</span></div>
+                <div class="menu-item"><span class="item-name">بيضة بسطرمة</span><span class="price-tag">145 ج</span></div>
+            </div>
+            <div class="menu-category">
+                <div class="menu-item"><span class="item-name">بطاطس</span><span class="price-tag">110 ج</span></div>
+                <div class="menu-item"><span class="item-name">كريسبي فراخ</span><span class="price-tag">145 ج</span></div>
+                <div class="menu-item"><span class="item-name">دجاج جريل</span><span class="price-tag">145 ج</span></div>
+                <div class="menu-item"><span class="item-name">مكس لحوم</span><span class="price-tag">150 ج</span></div>
+                <div class="menu-item"><span class="item-name">شيش طاووق</span><span class="price-tag">135 ج</span></div>
+            </div>
+        </div>
+
+        <!-- فرايد بولز -->
+        <div class="section-title">
+            <img src="https://i.ibb.co/TDFVqxHp/file-00000000cd7881f4be2e8ac466f3d939.png" alt="فرايد بولز">
+            <span>فرايد بولز (Fried Bolz)</span>
+        </div>
+        <div class="menu-category" style="max-width: 600px; margin: 0 auto;">
+            <div class="menu-item"><span class="item-name">مكس لحوم</span><span class="price-tag">165 ج</span></div>
+            <div class="menu-item"><span class="item-name">مكس جبن</span><span class="price-tag">165 ج</span></div>
+            <div class="menu-item"><span class="item-name">دجاج جريل</span><span class="price-tag">165 ج</span></div>
+        </div>
+
+        <!-- المقبلات -->
+        <div class="section-title">
+            <img src="https://i.ibb.co/0RmL2Qbw/file-0000000071fc81f4b0b4c1f863120ba9.png" alt="مقبلات">
+            <span>مقبلات (Appetizers)</span>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-category">
+                <div class="menu-item"><span class="item-name">أصابع جبنة متبلة</span><span class="price-tag">70 ج</span></div>
+                <div class="menu-item"><span class="item-name">خبز بالثوم والجبنة</span><span class="price-tag">65 ج</span></div>
+                <div class="menu-item"><span class="item-name">خبز بالثوم سوبريم</span><span class="price-tag">75 ج</span></div>
+                <div class="menu-item"><span class="item-name">حلقات بصل متبلة</span><span class="price-tag">60 ج</span></div>
+            </div>
+            <div class="menu-category">
+                <div class="menu-item"><span class="item-name">بطاطس مقلية</span><span class="price-tag">50 ج</span></div>
+                <div class="menu-item"><span class="item-name">بطاطس مع صوص شيدر</span><span class="price-tag">65 ج</span></div>
+                <div class="menu-item"><span class="item-name">بطاطس ويدجز</span><span class="price-tag">75 ج</span></div>
+            </div>
+        </div>
+
+        <!-- الفطير المشلتت -->
+        <div class="section-title">
+            <img src="https://i.ibb.co/G4szPfDQ/file-0000000069b4820ab21281792c4926f0.png" alt="فطير مشلتت">
+            <span>فطير مشلتت (Meshaltet)</span>
+        </div>
+        <div class="menu-category" style="max-width: 600px; margin: 0 auto;">
+            <div class="menu-item">
+                <div>
+                    <div class="item-name">فطير مشلتت (M)</div>
+                    <div class="item-desc">يقدم مع ثلاث أنواع حسب الاختيار: جبنة قديمة، عسل أبيض، قشطة، عسل أسود، طحينة</div>
+                </div>
+                <div><span class="price-tag">230 ج</span></div>
+            </div>
+        </div>
+
+        <!-- الفطير الشرقي -->
+        <div class="section-title">
+            <img src="https://i.ibb.co/Zw7jHJr/file-000000004e6c820aaf6f8925c19b7bbb-1.png" alt="فطير شرقي">
+            <span>فطير شرقي (Oriental Feteer)</span>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-category">
+                <h3>حجم M & L</h3>
+                <div class="menu-item"><span class="item-name">فطيرة سجق بسطرمة كيري</span><div class="price-row"><span class="price-tag">M: 265</span><span class="price-tag">L: 345</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة سجق</span><div class="price-row"><span class="price-tag">M: 195</span><span class="price-tag">L: 250</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة سجق كيري</span><div class="price-row"><span class="price-tag">M: 215</span><span class="price-tag">L: 285</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة بسطرمة</span><div class="price-row"><span class="price-tag">M: 205</span><span class="price-tag">L: 265</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة بسطرمة كيري</span><div class="price-row"><span class="price-tag">M: 235</span><span class="price-tag">L: 300</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة هوت دوج</span><div class="price-row"><span class="price-tag">M: 175</span><span class="price-tag">L: 230</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة مكس لحوم</span><div class="price-row"><span class="price-tag">M: 230</span><span class="price-tag">L: 310</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة سجق بسطرمة</span><div class="price-row"><span class="price-tag">M: 230</span><span class="price-tag">L: 310</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة شيش طاووق</span><div class="price-row"><span class="price-tag">M: 230</span><span class="price-tag">L: 310</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة مكس جبن</span><div class="price-row"><span class="price-tag">M: 195</span><span class="price-tag">L: 250</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة خضار</span><div class="price-row"><span class="price-tag">M: 195</span><span class="price-tag">L: 250</span></div></div>
+            </div>
+            <div class="menu-category">
+                <h3>حجم M & L (تابع)</h3>
+                <div class="menu-item"><span class="item-name">فطيرة دجاج مشروم</span><div class="price-row"><span class="price-tag">M: 215</span><span class="price-tag">L: 285</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة كرانشي</span><div class="price-row"><span class="price-tag">M: 235</span><span class="price-tag">L: 290</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة دجاج رانش</span><div class="price-row"><span class="price-tag">M: 235</span><span class="price-tag">L: 290</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة دجاج باربيكيو</span><div class="price-row"><span class="price-tag">M: 235</span><span class="price-tag">L: 290</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة جمبري</span><div class="price-row"><span class="price-tag">M: 270</span><span class="price-tag">L: 360</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة سي فود</span><div class="price-row"><span class="price-tag">M: 285</span><span class="price-tag">L: 375</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة سي رانش</span><div class="price-row"><span class="price-tag">M: 305</span><span class="price-tag">L: 395</span></div></div>
+                <div class="menu-item"><span class="item-name">فطيرة تونة</span><div class="price-row"><span class="price-tag">M: 215</span><span class="price-tag">L: 295</span></div></div>
+            </div>
+        </div>
+
+        <!-- الفطير الحلو -->
+        <div class="section-title">
+            <img src="https://i.ibb.co/tPkdnFWZ/file-00000000c074821084576e9f5b9093f4.png" alt="فطير حلو">
+            <span>فطير حلو (Sweet Feteer)</span>
+        </div>
+        <div class="menu-category" style="max-width: 600px; margin: 0 auto;">
+            <div class="menu-item"><span class="item-name">فطيرة بغاشة</span><span class="price-tag">75 ج</span></div>
+            <div class="menu-item"><span class="item-name">فطيرة كاستر</span><span class="price-tag">95 ج</span></div>
+            <div class="menu-item"><span class="item-name">فطيرة نوتيلا موز</span><span class="price-tag">190 ج</span></div>
+            <div class="menu-item"><span class="item-name">فطيرة مكسرات</span><span class="price-tag">150 ج</span></div>
+            <div class="menu-item"><span class="item-name">فطيرة قشطة وبسبوسة</span><span class="price-tag">185 ج</span></div>
+            <div class="menu-item"><span class="item-name">فطيرة وايت ولسوت</span><span class="price-tag">170 ج</span></div>
+            <div class="menu-item"><span class="item-name">فطيرة بسبوسة وكنافة</span><span class="price-tag">165 ج</span></div>
+            <div class="menu-item"><span class="item-name">فطيرة قشطة وعسل</span><span class="price-tag">150 ج</span></div>
+            <div class="menu-item"><span class="item-name">فطيرة لوتس نوتيلا</span><span class="price-tag">220 ج</span></div>
+            <div class="menu-item"><span class="item-name">فطيرة بلح</span><span class="price-tag">185 ج</span></div>
+            <div class="menu-item"><span class="item-name">فطيرة فور سيزون</span><span class="price-tag">240 ج</span></div>
+            <div class="menu-item"><span class="item-name">فطيرة أوريو</span><span class="price-tag">150 ج</span></div>
+            <div class="menu-item"><span class="item-name">فطيرة سكر</span><span class="price-tag">65 ج</span></div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © بيتزا يم يم - فرع المهندسين | الطلب عن طريق المكالمات أو الواتساب</p>
+    </footer>
+
+</body>
+</html>
